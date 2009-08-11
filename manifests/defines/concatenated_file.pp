@@ -42,8 +42,8 @@ define concatenated_file (
 {
 
 	$dir_real = $dir ? { '' => "${name}.d", default => $dir }
-
-	$tmp_file_name = regsubst($dir_real, '/', '_', 'G')
+    # BROKEN!  until I use puppet 24.6!
+    # $tmp_file_name = regsubst($dir_real, '/', '_', 'G')
 	$tmp_file = "${module_dir_path}/${tmp_file_name}"
 
 	if defined(File[$dir_real]) {
