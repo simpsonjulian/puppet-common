@@ -39,4 +39,9 @@ define module_dir (
 
 # Use this variable to reference the base path. Thus you are safe from any
 # changes.
-$module_dir_path = '/var/lib/puppet/modules'
+if $server {
+  $module_dir_path = '/etc/puppet/modules'
+} else {
+  $module_dir_path = generate('/usr/bin/ruby', '-e', 'puts ARGV[0].split(":")[0]',$modulepath) 
+}
+
